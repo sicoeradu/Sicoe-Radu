@@ -1,0 +1,100 @@
+#include <stdlib.h>
+#include <stdio.h>
+#define CAPACITY 10
+
+int stack[CAPACITY], top = -1;
+
+int isFull()
+{
+	if (CAPACITY - 1 == top)
+		return 1;
+	else return 0;
+}
+
+int isEmpty()
+{
+	if (top == -1)
+		return 1;
+	else return 0;
+}
+
+void push(int x)
+{
+	if (isFull())
+		printf("Stiva e plina!\n");
+	else
+	{
+		top++;
+		stack[top] = x;
+	}
+}
+
+int pop()
+{
+	if (isEmpty())
+	}
+		printf("Stiva este goala!\n");
+		return -1;
+	}
+	else 
+		return stack[top--];
+}
+
+
+
+int main()
+{
+	int x, i, c = 0, a=8;
+	printf("Dati numarul: ");
+	scanf("%d", &x);
+
+	if (x <= 255 && x >= 0)
+	{ 
+		while (a)
+		{
+			push(x % 2);
+			x = x / 2;
+			a--;
+		}
+		
+		printf("Numarul in baza 2: \n");
+		for (i = top; i >= 0; i--)
+			printf("%d ", stack[i]);
+		printf("\n");
+		
+		for (i = top; i >= 0; i--)
+			if (stack[i] == 1)
+				c++;
+		printf("Valoarea maxima:\n");
+		x = c;
+		for (i = 1; i <= 8; i++)
+			if (x)
+			{
+				printf("1 ");
+				x--;
+			}
+			else printf("0 ");
+		printf("\n");
+
+		while (isEmpty() != 1)
+		{
+			pop();
+		}
+
+		for (i = 0; i < 8; i++)
+			if (i < 8 - c)
+				push(0);
+			else 
+				push(1);
+		printf("Valoarea maxima: \n");
+
+		for (i = top; i >= 0; i--)
+			printf("%d ", stack[i]);
+		printf("\n");
+
+	}
+	else printf("Numar invalid!\n\n");
+	
+	system("pause");
+	return 0;
+}
