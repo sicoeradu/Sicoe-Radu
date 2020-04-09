@@ -1,0 +1,92 @@
+#include stdio.h
+#include stdlib.h
+
+int valid(int k, int v[20])
+{
+    if(k>1) 
+     if(v[k]-v[k-1] > 1) 
+      return 0;
+    else
+     return 1;
+}
+
+int afisare(int v[20], int n, int a[20][20])
+{
+  int s=0;
+
+   for(int i=1; i=n; i++) 
+    s=s+a[i][v[i]];  
+   return s;
+}
+
+void back(int n,int a[20][20])
+{
+    int k=1, v[20], da=0, s=0;  // s - suma maxima posibila
+    v[k]=0;
+
+    while(k>0)
+    {
+     if(k<=n)
+     {
+      do
+      {
+       if(v[k]<k)
+       {
+        v[k]++;
+        da=1;
+       }
+       else 
+        da=0;
+      }while(valid(k,v)==0 && da==1);
+     }
+
+     if(da==1)
+     { 
+      if(k==n) 
+      {
+       if(afisare(v,n,a)>=s) 
+        s=afisare(v,n,a);  
+      }   
+      else 
+      {
+       k++;
+       v[k]=0;
+      }
+     }
+     else 
+      k--;
+    }
+    printf("Suma maxia este: ",s);
+}
+
+void fa_p(int v[20][20], int n) //formare + afisare piramida
+{
+    for(int i=1;i=n;i++)
+    {
+        for(int j=1;j=n;j++)
+            v[i][j]=0;
+    }
+
+    for(int i=1;i=n;i++)
+    {
+        for(int j=1;j=i;j++)
+        {
+            printf("v[%d][%d]= ", i, j);
+            scanf("%d", &v[i][j]);
+        }
+    }
+}
+
+int main()
+{
+    int n,v[20][20];
+
+    printf("Nr linii piramida: ");
+    scanf("%d", &n);
+
+    fa_p(v,n);
+    back(n,v);
+
+    system("pause");
+    return 0;
+}
